@@ -18,7 +18,7 @@ model Client{
   password String @db.VarChar(120)
   phone String @unique @db.VarChar(18)
   createdAt DateTime @default(now())
-
+  contacts Contact[]
   @@map("clients")
 }
 
@@ -28,7 +28,8 @@ model Contact{
   email String @unique @db.VarChar(45)
   phone String @unique @db.VarChar(18)
   createdAt DateTime @default(now())
-
+  client Client @relation(fields: [client_id],references: [id],onDelete:Cascade)
+  client_id String
   @@map("contacts")
 }
 
