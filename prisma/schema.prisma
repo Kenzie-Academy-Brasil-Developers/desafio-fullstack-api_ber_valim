@@ -9,3 +9,15 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Client{
+  id String @id @unique @default(uuid())
+  fullName String @db.VarChar(80)
+  email String @unique @db.VarChar(45)
+  admin Boolean @default(false)
+  password String @db.VarChar(120)
+  phone String @unique @db.VarChar(18)
+  createdAt DateTime @default(now())
+
+  @@map("clients")
+}
