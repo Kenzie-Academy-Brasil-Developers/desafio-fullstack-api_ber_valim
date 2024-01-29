@@ -6,3 +6,5 @@ import {
 
 export type TcreateClientRequest = z.infer<typeof createClientRequestSchema>;
 export type TclientWithoutAdmin = z.infer<typeof clientWithoutAdminSchema>;
+export type TupdateClientRequest = Partial<TclientWithoutAdmin>;
+// export type TclientResponseWithoutPassword
