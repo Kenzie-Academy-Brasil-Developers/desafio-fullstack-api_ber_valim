@@ -24,3 +24,7 @@ export const readClientsService = async (): Promise<TreadClientsList> => {
   const clients: TreadClientsList = await prisma.client.findMany();
   return clientsListResponseSchema.parse(clients);
 };
+
+export const readClientsByIdService = async (
+  id: string
+): Promise<TclientResponseWithoutPassword> => {};
