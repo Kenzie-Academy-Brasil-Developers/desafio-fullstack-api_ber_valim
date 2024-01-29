@@ -10,4 +10,22 @@ export const clientResponseSchema = z.object({
   createdAt: z.string(),
 });
 
-// export const createClientRequest
+export const createClientRequestSchema = clientResponseSchema.pick({
+  fullName: true,
+  email: true,
+  admin: true,
+  password: true,
+  phone: true,
+});
+
+export const clientWithoutAdminSchema = createClientRequestSchema.omit({
+  admin: true,
+});
+
+export const updateClientRequestSchema = clientWithoutAdminSchema.partial();
+
+export const clientResponseWithoutPassword = clientResponseSchema.omit({
+  password: true,
+});
+
+// clientsList;
