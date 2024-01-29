@@ -24,8 +24,14 @@ export const clientWithoutAdminSchema = createClientRequestSchema.omit({
 
 export const updateClientRequestSchema = clientWithoutAdminSchema.partial();
 
-export const clientResponseWithoutPassword = clientResponseSchema.omit({
+export const clientResponseWithoutPasswordSchema = clientResponseSchema.omit({
   password: true,
 });
 
-// clientsList;
+export const clientsListResponseSchema =
+  clientResponseWithoutPasswordSchema.array();
+
+export const clientLoginRequestSchema = clientResponseSchema.pick({
+  email: true,
+  password: true,
+});
