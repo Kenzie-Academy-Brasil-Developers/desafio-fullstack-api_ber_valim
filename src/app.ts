@@ -3,6 +3,9 @@ import "express-async-errors";
 import express, { Application } from "express";
 import { handleErrors } from "./middlewares/handleErrors.middleware";
 import { allRoutes } from "./routers";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export const app: Application = express();
 
