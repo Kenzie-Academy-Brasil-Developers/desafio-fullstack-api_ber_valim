@@ -8,7 +8,9 @@ import { prisma } from "../app";
 import {
   clientResponseWithoutPasswordSchema,
   clientsListResponseSchema,
+  readOneClientResponseSchema,
 } from "../schemas/client.schema";
+import { Client } from ".prisma/client";
 
 export const createClientService = async (
   data: TcreateClientRequest
@@ -26,5 +28,16 @@ export const readClientsService = async (): Promise<TreadClientsList> => {
 };
 
 export const readClientsByIdService = async (
-  id: string
-): Promise<TclientResponseWithoutPassword> => {};
+  client: Client
+): Promise<TclientResponseWithoutPassword> => {
+  const oneClient = await prisma.client.findUnique({
+    where: {
+      id: client.id,
+    },
+    include: {
+      contacts: true,
+    },
+  });
+
+  return readOneClientResponseSchema.parse(oneClient);
+};

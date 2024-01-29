@@ -15,5 +15,7 @@ export const verifyClientIdExists = async (
 
   if (!client) throw new AppError("Client not found", 404);
 
+  res.locals = { ...res.locals, client };
+
   return next();
 };
