@@ -2,9 +2,13 @@ import { hash } from "bcryptjs";
 import {
   TclientResponseWithoutPassword,
   TcreateClientRequest,
+  TreadClientsList,
 } from "../interfaces/client.interface";
 import { prisma } from "../app";
-import { clientResponseWithoutPasswordSchema } from "../schemas/client.schema";
+import {
+  clientResponseWithoutPasswordSchema,
+  clientsListResponseSchema,
+} from "../schemas/client.schema";
 
 export const createClientService = async (
   data: TcreateClientRequest
@@ -14,4 +18,9 @@ export const createClientService = async (
     data,
   });
   return clientResponseWithoutPasswordSchema.parse(newClient);
+};
+
+export const readClientsService = async (): Promise<TreadClientsList> => {
+  const clients: TreadClientsList = await prisma.client.findMany();
+  return clientsListResponseSchema.parse(clients);
 };
