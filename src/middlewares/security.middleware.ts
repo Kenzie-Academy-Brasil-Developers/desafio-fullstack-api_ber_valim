@@ -7,7 +7,7 @@ export const verifyToken = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const { authorization } = req.headers;
 
   if (!authorization) throw new AppError("Missing Bearer Token", 401);
@@ -17,6 +17,18 @@ export const verifyToken = (
   const decodeToken = verify(getToken, process.env.SECRET_KEY!);
 
   res.locals = { ...res.locals, decodeToken };
+
+  return next();
+};
+
+export const verifyAdmin = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { admin } = res.locals.decodeToken;
+
+  if (!admin) throw new AppError("Insufficient Permissions", 403);
 
   return next();
 };
