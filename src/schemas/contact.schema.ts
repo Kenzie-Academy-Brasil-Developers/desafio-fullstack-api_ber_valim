@@ -8,3 +8,10 @@ export const contactResponseSchema = z.object({
   createdAt: z.date(),
   client_id: z.string(),
 });
+
+export const createContactRequestSchema = contactResponseSchema.omit({
+  id: true,
+  client_id: true,
+});
+
+// export const updateContactRequ
