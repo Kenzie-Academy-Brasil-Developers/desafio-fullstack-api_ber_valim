@@ -4,6 +4,7 @@ import {
   deleteClientByIdService,
   readClientsByIdService,
   readClientsService,
+  updateClientByIdService,
 } from "../services/client.service";
 
 export const createClientController = async (
@@ -38,4 +39,13 @@ export const deleteClientByIdController = async (
   const { client } = res.locals;
   await deleteClientByIdService(client);
   return res.status(204).json();
+};
+
+export const updateClientByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { client } = res.locals;
+  const updatedClient = await updateClientByIdService(client, req.body);
+  return res.status(200).json(updatedClient);
 };

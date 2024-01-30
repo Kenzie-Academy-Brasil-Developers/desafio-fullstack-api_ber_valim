@@ -4,9 +4,13 @@ import {
   deleteClientByIdController,
   readClientsByIdController,
   readClientsController,
+  updateClientByIdController,
 } from "../controller/client.controller";
 import { validateBody } from "../middlewares/validateBody.middleware";
-import { createClientRequestSchema } from "../schemas/client.schema";
+import {
+  createClientRequestSchema,
+  updateClientRequestSchema,
+} from "../schemas/client.schema";
 import { validateEmailExists } from "../middlewares/validateEmailExists.middleware";
 import { validatePhoneExists } from "../middlewares/validatePhoneExists.middleware";
 import {
@@ -39,4 +43,12 @@ clientRouter.delete(
   verifyClientIdExists,
   verifyPermission,
   deleteClientByIdController
+);
+clientRouter.patch(
+  "/:id",
+  validateBody(updateClientRequestSchema),
+  verifyClientIdExists,
+  verifyToken,
+  verifyPermission,
+  updateClientByIdController
 );
