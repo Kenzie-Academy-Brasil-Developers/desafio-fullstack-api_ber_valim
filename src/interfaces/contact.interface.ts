@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { contactResponseSchema } from "../schemas/contact.schema";
+import {
+  contactResponseSchema,
+  createContactRequestSchema,
+} from "../schemas/contact.schema";
 
-export type TContactResponse = z.infer<typeof contactResponseSchema>;
-// export
+export type TcontactResponse = z.infer<typeof contactResponseSchema>;
+export type TcreateContactRequest = z.infer<typeof createContactRequestSchema>;
