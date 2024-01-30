@@ -9,9 +9,11 @@ export const contactResponseSchema = z.object({
   client_id: z.string(),
 });
 
+export const readContactsResponseSchema = contactResponseSchema.array();
+
 export const createContactRequestSchema = contactResponseSchema.omit({
   id: true,
   client_id: true,
 });
 
-// export const updateContactRequ
+export const updateContactRequestSchema = createContactRequestSchema.partial();
