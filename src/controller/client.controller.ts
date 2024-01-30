@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createClientService,
+  deleteClientByIdService,
   readClientsByIdService,
   readClientsService,
 } from "../services/client.service";
@@ -28,4 +29,13 @@ export const readClientsByIdController = async (
   const { client } = res.locals;
   const oneClient = await readClientsByIdService(client);
   return res.status(200).json(oneClient);
+};
+
+export const deleteClientByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { client } = res.locals;
+  await deleteClientByIdService(client);
+  return res.status(204).json();
 };

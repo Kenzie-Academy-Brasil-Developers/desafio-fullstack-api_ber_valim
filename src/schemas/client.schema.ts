@@ -23,7 +23,7 @@ export const readOneClientResponseSchema = z.object({
       email: z.string().email().min(3).max(45),
       phone: z.string().max(18),
       createdAt: z.date(),
-      client_id: z.string(),
+      // client_id: z.string(),
     })
   ),
 });

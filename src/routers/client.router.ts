@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createClientController,
+  deleteClientByIdController,
   readClientsByIdController,
   readClientsController,
 } from "../controller/client.controller";
@@ -31,4 +32,11 @@ clientRouter.get(
   verifyToken,
   verifyPermission,
   readClientsByIdController
+);
+clientRouter.delete(
+  "/:id",
+  verifyToken,
+  verifyClientIdExists,
+  verifyPermission,
+  deleteClientByIdController
 );

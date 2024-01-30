@@ -41,3 +41,9 @@ export const readClientsByIdService = async (
 
   return readOneClientResponseSchema.parse(oneClient);
 };
+
+export const deleteClientByIdService = async (
+  client: Client
+): Promise<void> => {
+  await prisma.client.delete({ where: { id: client.id } });
+};
