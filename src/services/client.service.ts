@@ -3,6 +3,7 @@ import {
   TclientResponseWithoutPassword,
   TcreateClientRequest,
   TreadClientsList,
+  TupdateClientRequest,
 } from "../interfaces/client.interface";
 import { prisma } from "../app";
 import {
@@ -46,4 +47,17 @@ export const deleteClientByIdService = async (
   client: Client
 ): Promise<void> => {
   await prisma.client.delete({ where: { id: client.id } });
+};
+
+export const updateClientByIdService = async (
+  client: Client,
+  data: TupdateClientRequest
+): Promise<TclientResponseWithoutPassword> => {
+  const updatedClient = await prisma.client.update({
+    where: {
+      id: client.id,
+    },
+    data,
+  });
+  return clientResponseWithoutPasswordSchema.parse(updatedClient);
 };
