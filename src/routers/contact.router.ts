@@ -1,13 +1,13 @@
 import { Router } from "express";
 import {
   createContactController,
+  deleteOneContactByIdController,
   readAllContactsController,
   readOneContactByIdController,
 } from "../controller/contact.controller";
 import {
   verifyAdmin,
   verifyContactPermission,
-  verifyPermission,
   verifyToken,
 } from "../middlewares/security.middleware";
 import {
@@ -35,4 +35,11 @@ contactRouter.get(
   verifyToken,
   verifyContactPermission,
   readOneContactByIdController
+);
+contactRouter.delete(
+  "/:id",
+  verifyContactIdExists,
+  verifyToken,
+  verifyContactPermission,
+  deleteOneContactByIdController
 );

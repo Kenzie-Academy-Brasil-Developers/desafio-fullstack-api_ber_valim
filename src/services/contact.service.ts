@@ -62,3 +62,9 @@ export const readOneContactByIdService = async (
   });
   return readContactResponseSchema.parse(oneContact);
 };
+
+export const deleteOneContactByIdService = async (
+  contact: Contact
+): Promise<void> => {
+  await prisma.contact.delete({ where: { id: contact.id } });
+};

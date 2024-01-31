@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createContactService,
+  deleteOneContactByIdService,
   readAllContactsService,
   readOneContactByIdService,
 } from "../services/contact.service";
@@ -35,4 +36,13 @@ export const readOneContactByIdController = async (
     contact
   );
   return res.status(200).json(oneContact);
+};
+
+export const deleteOneContactByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { contact } = res.locals;
+  await deleteOneContactByIdService(contact);
+  return res.status(204).json();
 };

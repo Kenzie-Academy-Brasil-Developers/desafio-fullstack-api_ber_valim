@@ -45,11 +45,9 @@ export const verifyContactIdExists = async (
     where: { id },
   });
 
-  if (!contact) throw new AppError("Client not found", 404);
+  if (!contact) throw new AppError("Contact not found", 404);
 
   res.locals = { ...res.locals, contact };
-
-  console.log(res.locals.contact);
 
   return next();
 };
