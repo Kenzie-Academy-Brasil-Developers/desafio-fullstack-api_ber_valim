@@ -29,7 +29,7 @@ export const validateContactPhoneExists = async (
     where: { phone: req.body.phone },
   });
 
-  if (client) throw new AppError("Phone Already exists", 409);
+  if (client) throw new AppError("Contact Phone Already exists", 409);
 
   return next();
 };

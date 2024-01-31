@@ -13,6 +13,7 @@ export const readContactsResponseSchema = contactResponseSchema.array();
 
 export const createContactRequestSchema = contactResponseSchema.omit({
   id: true,
+  createdAt: true,
   client_id: true,
 });
 
