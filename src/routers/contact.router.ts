@@ -4,6 +4,7 @@ import {
   deleteOneContactByIdController,
   readAllContactsController,
   readOneContactByIdController,
+  updateOneContactByIdController,
 } from "../controller/contact.controller";
 import {
   verifyAdmin,
@@ -16,7 +17,10 @@ import {
   verifyContactIdExists,
 } from "../middlewares/contact.middlewares";
 import { validateBody } from "../middlewares/validateBody.middleware";
-import { createContactRequestSchema } from "../schemas/contact.schema";
+import {
+  createContactRequestSchema,
+  updateContactRequestSchema,
+} from "../schemas/contact.schema";
 
 export const contactRouter: Router = Router();
 
@@ -42,4 +46,12 @@ contactRouter.delete(
   verifyToken,
   verifyContactPermission,
   deleteOneContactByIdController
+);
+contactRouter.patch(
+  "/:id",
+  validateBody(updateContactRequestSchema),
+  verifyContactIdExists,
+  verifyToken,
+  verifyContactPermission,
+  updateOneContactByIdController
 );

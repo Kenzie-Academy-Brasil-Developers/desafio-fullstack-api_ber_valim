@@ -5,6 +5,7 @@ import {
   TcreateContactRequest,
   TreadContactsResponse,
   TreadOneContactResponse,
+  TupdateContactRequest,
 } from "../interfaces/contact.interface";
 import {
   contactResponseSchema,
@@ -67,4 +68,17 @@ export const deleteOneContactByIdService = async (
   contact: Contact
 ): Promise<void> => {
   await prisma.contact.delete({ where: { id: contact.id } });
+};
+
+export const updateOneContactByIdService = async (
+  contact: Contact,
+  data: TupdateContactRequest
+): Promise<TcontactResponse> => {
+  const updatedContact: Contact | null = await prisma.contact.update({
+    where: {
+      id: contact.id,
+    },
+    data,
+  });
+  return contactResponseSchema.parse(updatedContact);
 };

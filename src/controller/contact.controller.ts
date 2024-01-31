@@ -4,8 +4,10 @@ import {
   deleteOneContactByIdService,
   readAllContactsService,
   readOneContactByIdService,
+  updateOneContactByIdService,
 } from "../services/contact.service";
 import {
+  TcontactResponse,
   TreadContactsResponse,
   TreadOneContactResponse,
 } from "../interfaces/contact.interface";
@@ -45,4 +47,16 @@ export const deleteOneContactByIdController = async (
   const { contact } = res.locals;
   await deleteOneContactByIdService(contact);
   return res.status(204).json();
+};
+
+export const updateOneContactByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { contact } = res.locals;
+  const updatedContact: TcontactResponse = await updateOneContactByIdService(
+    contact,
+    req.body
+  );
+  return res.status(200).json(updatedContact);
 };
