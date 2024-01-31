@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createContactController } from "../controller/contact.controller";
+import {
+  createContactController,
+  readAllContactsController,
+} from "../controller/contact.controller";
 import { verifyAdmin, verifyToken } from "../middlewares/security.middleware";
 import {
   validateContactEmailExists,
@@ -18,3 +21,4 @@ contactRouter.post(
   validateContactPhoneExists,
   createContactController
 );
+contactRouter.get("/", verifyToken, verifyAdmin, readAllContactsController);

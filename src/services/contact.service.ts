@@ -3,8 +3,12 @@ import AppError from "../errors/AppError.error";
 import {
   TcontactResponse,
   TcreateContactRequest,
+  TreadContactsResponse,
 } from "../interfaces/contact.interface";
-import { contactResponseSchema } from "../schemas/contact.schema";
+import {
+  contactResponseSchema,
+  readContactsResponseSchema,
+} from "../schemas/contact.schema";
 
 export const createContactService = async (
   data: TcreateContactRequest,
@@ -33,4 +37,11 @@ export const createContactService = async (
   });
 
   return contactResponseSchema.parse(newContact);
+};
+
+export const readAllContactsService = async (): Promise<any> => {
+  const contacts: any = await prisma.contact.findMany({
+    include: { client: true },
+  });
+  return readContactsResponseSchema.parse(contacts);
 };
