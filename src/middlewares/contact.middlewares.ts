@@ -49,5 +49,7 @@ export const verifyContactIdExists = async (
 
   res.locals = { ...res.locals, contact };
 
+  console.log(res.locals.contact);
+
   return next();
 };

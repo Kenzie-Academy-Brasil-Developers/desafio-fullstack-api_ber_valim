@@ -2,11 +2,18 @@ import { Router } from "express";
 import {
   createContactController,
   readAllContactsController,
+  readOneContactByIdController,
 } from "../controller/contact.controller";
-import { verifyAdmin, verifyToken } from "../middlewares/security.middleware";
+import {
+  verifyAdmin,
+  verifyContactPermission,
+  verifyPermission,
+  verifyToken,
+} from "../middlewares/security.middleware";
 import {
   validateContactEmailExists,
   validateContactPhoneExists,
+  verifyContactIdExists,
 } from "../middlewares/contact.middlewares";
 import { validateBody } from "../middlewares/validateBody.middleware";
 import { createContactRequestSchema } from "../schemas/contact.schema";
@@ -22,3 +29,10 @@ contactRouter.post(
   createContactController
 );
 contactRouter.get("/", verifyToken, verifyAdmin, readAllContactsController);
+contactRouter.get(
+  "/:id",
+  verifyContactIdExists,
+  verifyToken,
+  verifyContactPermission,
+  readOneContactByIdController
+);

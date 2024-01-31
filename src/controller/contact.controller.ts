@@ -2,8 +2,12 @@ import { Request, Response } from "express";
 import {
   createContactService,
   readAllContactsService,
+  readOneContactByIdService,
 } from "../services/contact.service";
-import { TreadContactsResponse } from "../interfaces/contact.interface";
+import {
+  TreadContactsResponse,
+  TreadOneContactResponse,
+} from "../interfaces/contact.interface";
 
 export const createContactController = async (
   req: Request,
@@ -20,4 +24,15 @@ export const readAllContactsController = async (
 ): Promise<Response> => {
   const contacts: TreadContactsResponse = await readAllContactsService();
   return res.status(201).json(contacts);
+};
+
+export const readOneContactByIdController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { contact } = res.locals;
+  const oneContact: TreadOneContactResponse = await readOneContactByIdService(
+    contact
+  );
+  return res.status(200).json(oneContact);
 };

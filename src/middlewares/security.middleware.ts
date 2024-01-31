@@ -48,3 +48,20 @@ export const verifyPermission = (
 
   return next();
 };
+
+export const verifyContactPermission = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { admin, sub } = res.locals.decodeToken;
+
+  const contactClientId = res.locals.contact.client_id;
+
+  if (admin) return next();
+
+  if (contactClientId !== sub)
+    throw new AppError("Insufficient Permissions", 403);
+
+  return next();
+};
