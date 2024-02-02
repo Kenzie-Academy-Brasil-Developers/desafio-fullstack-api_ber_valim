@@ -15,10 +15,7 @@ import {
 import { Contact } from ".prisma/client";
 
 export const createContactService = async (
-  data: TcreateContactRequest & {
-    email: string[] | string;
-    phone: string[] | string;
-  },
+  data: TcreateContactRequest,
   id: string
 ): Promise<TcontactResponse> => {
   const client = await prisma.client.findUnique({
@@ -79,7 +76,7 @@ export const deleteOneContactByIdService = async (
 
 export const updateOneContactByIdService = async (
   contact: Contact,
-  data: any
+  data: TupdateContactRequest
 ): Promise<TcontactResponse> => {
   const updatedContact: Contact | null = await prisma.contact.update({
     where: {
