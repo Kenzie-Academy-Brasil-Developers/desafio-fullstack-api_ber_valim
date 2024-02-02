@@ -4,9 +4,7 @@ import {
   createContactRequestSchema,
   readContactResponseSchema,
   readContactsResponseSchema,
-  updateContactRequestSchema,
 } from "../schemas/contact.schema";
-import { readOneClientResponseSchema } from "../schemas/client.schema";
 
 export type TcontactResponse = z.infer<typeof contactResponseSchema>;
 export type TcreateContactRequest = z.infer<typeof createContactRequestSchema>;

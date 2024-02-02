@@ -28,8 +28,8 @@ export const readContactsResponseSchema = readContactResponseSchema.array();
 
 export const createContactRequestSchema = z.object({
   fullName: z.string().min(3).max(80),
-  email: z.array(z.string().email().min(3).max(45)), // Array de emails
-  phone: z.array(z.string().max(18)), // Array de telefones
+  email: z.array(z.string().email().min(3).max(45)),
+  phone: z.array(z.string().max(18)),
 });
 
 export const updateContactRequestSchema = createContactRequestSchema.partial();
