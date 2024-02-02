@@ -13,9 +13,11 @@ import {
 } from "../schemas/client.schema";
 import { Client } from ".prisma/client";
 
-export const createClientService = async (data: any): Promise<any> => {
+export const createClientService = async (
+  data: TcreateClientRequest
+): Promise<TclientResponseWithoutPassword> => {
   data.password = await hash(data.password, 12);
-  const newClient: any = await prisma.client.create({
+  const newClient: TclientResponseWithoutPassword = await prisma.client.create({
     data,
   });
   return clientResponseWithoutPasswordSchema.parse(newClient);
