@@ -26,14 +26,17 @@ export const createContactService = async (
 
   if (!client) throw new AppError("Client Not Found!", 404);
 
+  const emailArray = Array.isArray(data.email) ? data.email : [data.email];
+  const phoneArray = Array.isArray(data.phone) ? data.phone : [data.phone];
+
   const newContact: TcontactResponse = await prisma.contact.create({
     data: {
       fullName: data.fullName,
       email: {
-        set: data.email,
+        set: emailArray,
       },
       phone: {
-        set: data.phone,
+        set: phoneArray,
       },
       client: {
         connect: {
@@ -78,11 +81,22 @@ export const updateOneContactByIdService = async (
   contact: Contact,
   data: TupdateContactRequest
 ): Promise<TcontactResponse> => {
+  const emailArray = Array.isArray(data.email) ? data.email : [data.email];
+  const phoneArray = Array.isArray(data.phone) ? data.phone : [data.phone];
+
   const updatedContact: Contact | null = await prisma.contact.update({
     where: {
       id: contact.id,
     },
-    data,
+    data: {
+      fullName: data.fullName,
+      email: {
+        set: emailArray,
+      },
+      phone: {
+        set: phoneArray,
+      },
+    },
   });
   return contactResponseSchema.parse(updatedContact);
 };

@@ -11,11 +11,7 @@ import {
   verifyContactPermission,
   verifyToken,
 } from "../middlewares/security.middleware";
-import {
-  validateContactEmailExists,
-  validateContactPhoneExists,
-  verifyContactIdExists,
-} from "../middlewares/contact.middlewares";
+import { verifyContactIdExists } from "../middlewares/contact.middlewares";
 import { validateBody } from "../middlewares/validateBody.middleware";
 import {
   createContactRequestSchema,
@@ -28,8 +24,6 @@ contactRouter.post(
   "/",
   validateBody(createContactRequestSchema),
   verifyToken,
-  validateContactEmailExists,
-  validateContactPhoneExists,
   createContactController
 );
 contactRouter.get("/", verifyToken, verifyAdmin, readAllContactsController);

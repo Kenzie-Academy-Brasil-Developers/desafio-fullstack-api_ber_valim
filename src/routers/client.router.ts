@@ -50,5 +50,7 @@ clientRouter.patch(
   verifyClientIdExists,
   verifyToken,
   verifyPermission,
+  validateEmailExists,
+  validatePhoneExists,
   updateClientByIdController
 );
