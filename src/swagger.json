@@ -243,11 +243,194 @@
           }
         ]
       },
-      "patch": {},
-      "delete": {}
+      "patch": {
+        "description": "Rota responsável por atualizar os dados do cliente informado",
+        "tags": ["Rotas com parâmetros"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Id do cliente que se deseja buscar",
+            "name": "id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateOneClient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/createClientResponse"
+                },
+                "examples": {
+                  "client": {
+                    "value": {
+                      "id": "ac0d7199-ee97-4f7e-a03a-540f87e0b670",
+                      "fullName": "yatualizadosdcx",
+                      "email": "yatualizado@email.com",
+                      "admin": false,
+                      "phone": "345657666744",
+                      "createdAt": "2024-01-30T20:59:08.813Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "emailConflictError": {
+                    "value": {
+                      "message": "Email Already exists"
+                    }
+                  },
+                  "phoneConflictError": {
+                    "value": {
+                      "message": "Phone Already exists"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NotFoundError": {
+                    "value": {
+                      "message": "Client not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": ["update:clients", "admin"]
+          }
+        ]
+      },
+      "delete": {
+        "description": "Rota responsável por deletar os dados do usuário informado",
+        "tags": ["Rotas com parâmetros"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Id do cliente que deseja buscar",
+            "name": "id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Body content"
+          }
+        },
+        "security": [
+          {
+            "JWT": ["delete:clients", "admin"]
+          }
+        ]
+      }
     },
     "/login": {
-      "post": {}
+      "post": {
+        "description": "Rota responsável por realizar o login dos clientes",
+        "tags": ["Rotas sem parâmetros"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "logged",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/clientLoginResponse"
+                },
+                "examples": {
+                  "token": {
+                    "value": {
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsTmFtZSI6ImFkbWluIiwiYWRtaW4iOnRydWUsImlhdCI6MTcwNzI0NjcyNSwiZXhwIjoxNzA3MzE4NzI1LCJzdWIiOiI1NzNjYzMzNC1kOWE1LTRmMTMtYjM0Zi00YTM3MzgwNmYwM2QifQ.PJ6Ye3Jm_9HZpxZWBzVkrnG8G1fMIrsRWwHjPww6Qyg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "invalidCredentialError": {
+                    "value": {
+                      "message": "Invalid Credentials !"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
     },
     "/contacts": {
       "get": {},
@@ -477,6 +660,15 @@
           }
         },
         "required": ["email", "password"]
+      },
+      "clientLoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "minLength": 30
+          }
+        }
       },
       "createContact": {
         "type": "object",
