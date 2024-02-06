@@ -1,0 +1,571 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sign Contact API",
+    "description": "Esta API REST é responsável por cadastrar clientes que podem ter muitos contatos associados",
+    "version": "1.00"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333",
+      "description": "Development env"
+    },
+    {
+      "url": "https://onrender_signcontact-api.com",
+      "description": "Production env"
+    }
+  ],
+  "paths": {
+    "/clients": {
+      "get": {
+        "description": "Rota responsável por buscar todos os clientes cadastrados",
+        "tags": ["Rotas sem parâmetros"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                },
+                "examples": {
+                  "response": {
+                    "value": [
+                      [
+                        {
+                          "id": "e1ff15a2-568c-44fd-8c6c-0626a36764bb",
+                          "fullName": "dddd",
+                          "email": "xatualizado@gmail.com",
+                          "admin": false,
+                          "phone": "21343545323",
+                          "createdAt": "2024-01-29T17:37:57.948Z"
+                        },
+                        {
+                          "id": "573cc334-d9a5-4f13-b34f-4a373806f03d",
+                          "fullName": "admin",
+                          "email": "admin@gmail.com",
+                          "admin": true,
+                          "phone": "3456576667",
+                          "createdAt": "2024-01-29T17:38:50.949Z"
+                        },
+                        {
+                          "id": "6a51ef71-c365-4ffc-b4fc-d8e92e04cd9a",
+                          "fullName": "zzz",
+                          "email": "z@gmail.com",
+                          "admin": true,
+                          "phone": "32456789",
+                          "createdAt": "2024-01-30T20:58:05.985Z"
+                        },
+                        {
+                          "id": "22826d08-10d6-4191-93d4-747c5d824a5a",
+                          "fullName": "Abel",
+                          "email": "abel@gmail.com",
+                          "admin": true,
+                          "phone": "41983843902",
+                          "createdAt": "2024-02-05T17:59:25.756Z"
+                        },
+                        {
+                          "id": "ac0d7199-ee97-4f7e-a03a-540f87e0b670",
+                          "fullName": "yatualizadosdcx",
+                          "email": "yatualizado@email.com",
+                          "admin": false,
+                          "phone": "345657666744",
+                          "createdAt": "2024-01-30T20:59:08.813Z"
+                        }
+                      ]
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {}
+    },
+    "/clients/:id": {
+      "get": {},
+      "patch": {},
+      "delete": {}
+    },
+    "/login": {
+      "post": {}
+    },
+    "/contacts": {
+      "get": {},
+      "post": {}
+    },
+    "/contacts/:id": {
+      "get": {},
+      "patch": {},
+      "delete": {}
+    }
+  },
+  "components": {
+    "schemas": {
+      "createClient": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 45
+          },
+          "admin": {
+            "type": "boolean",
+            "default": false
+          },
+          "password": {
+            "type": "string",
+            "minLength": 45,
+            "maxLength": 120
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 18
+          }
+        },
+        "required": ["fullName", "email", "phone", "password"]
+      },
+      "readOneClient": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 45
+          },
+          "admin": {
+            "type": "boolean",
+            "default": false
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 18
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contacts": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "fullName": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 80
+                },
+                "email": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "format": "email",
+                      "minLength": 3,
+                      "maxLength": 45
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "format": "email",
+                        "minLength": 3,
+                        "maxLength": 45
+                      }
+                    }
+                  ]
+                },
+                "phone": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 18
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "maxLength": 18
+                      }
+                    }
+                  ]
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "client_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "readAllClients": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "fullName": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 80
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "minLength": 3,
+              "maxLength": 45
+            },
+            "admin": {
+              "type": "boolean",
+              "default": false
+            },
+            "phone": {
+              "type": "string",
+              "maxLength": 18
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "updateOneClient": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 45
+          },
+          "password": {
+            "type": "string",
+            "minLength": 45,
+            "maxLength": 120
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 18
+          }
+        }
+      },
+      "clientLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 45
+          },
+          "password": {
+            "type": "string",
+            "minLength": 45,
+            "maxLength": 120
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "createContact": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "minLength": 3,
+                "maxLength": 45
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                }
+              }
+            ]
+          },
+          "phone": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 18
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 18
+                }
+              }
+            ]
+          }
+        },
+        "required": ["fullName", "email", "phone"]
+      },
+      "readOneContact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "minLength": 3,
+                "maxLength": 45
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                }
+              }
+            ]
+          },
+          "phone": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 18
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 18
+                }
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "client": {
+            "type": "object",
+            "properties": {
+              "fullName": {
+                "type": "string",
+                "minLength": 3,
+                "maxLength": 80
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "minLength": 3,
+                "maxLength": 45
+              },
+              "admin": {
+                "type": "boolean",
+                "default": false
+              },
+              "phone": {
+                "type": "string",
+                "maxLength": 18
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      },
+      "readAllContacts": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "fullName": {
+              "type": "string",
+              "minLength": 3,
+              "maxLength": 80
+            },
+            "email": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "email",
+                    "minLength": 3,
+                    "maxLength": 45
+                  }
+                }
+              ]
+            },
+            "phone": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "maxLength": 18
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "maxLength": 18
+                  }
+                }
+              ]
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "client_id": {
+              "type": "string"
+            },
+            "client": {
+              "type": "object",
+              "properties": {
+                "fullName": {
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 80
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                },
+                "admin": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "phone": {
+                  "type": "string",
+                  "maxLength": 18
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "updateOneContact": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "minLength": 3,
+                "maxLength": 45
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                }
+              }
+            ]
+          },
+          "phone": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 18
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 18
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "JWT": [
+        "read:clients",
+        "update:clients",
+        "delete:clients",
+        "create:contacts",
+        "read:contacts",
+        "delete:contacts",
+        "update:contacts",
+        "admin"
+      ]
+    }
+  ]
+}
