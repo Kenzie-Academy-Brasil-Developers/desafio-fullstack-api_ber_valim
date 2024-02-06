@@ -17,7 +17,7 @@
 | PATCH  | /clientes/{id} | Atualiza os dados de um cliente específico    | Admins e donos da conta                  |
 | DELETE | /clientes/{id} | Exclui um cliente pelo ID                     | Admins e donos da conta                  |
 | POST   | /login         | Gerar um token de autenticação                | qualquer cliente, token não é necessário |
-| POST   | /contact       | Adiciona um novo contato para um cliente      | Admin e donos da conta                   |
+| POST   | /contact       | Adiciona um novo contato para um cliente      | Donos da conta                           |
 | GET    | /contact       | Lista todos os contatos                       | Apenas administradores                   |
 | GET    | /contact /{id} | Listar os contatos que pertencem a um cliente | Admin e cliente dono da conta            |
 | DELETE | /contact /{id} | Deletar o contato que pertence a u cliente    | Admin e cliente dono da conta            |
