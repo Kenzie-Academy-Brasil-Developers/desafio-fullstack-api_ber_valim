@@ -11,7 +11,7 @@
       "description": "Development env"
     },
     {
-      "url": "https://onrender_signcontact-api.com",
+      "url": "https://desafio-fullstack-api.onrender.com",
       "description": "Production env"
     }
   ],
