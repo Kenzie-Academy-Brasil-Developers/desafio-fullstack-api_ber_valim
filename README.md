@@ -34,7 +34,6 @@ Clone o reposítório de forma local
 <li>Utilize o comando npx prisma migrate dev--nome migration para rodar as migrações </li>
 <li>Para rodar o servidor, utilize o npm run dev</li>
 <li>Para um melhor entendimento a respeito da API e de cada rota, acesse a documentação em "http://localhost:3333/api-documentation/".Para ter acesso a esta rota, é necessário rodar o servidor</li>
+<li>Link do deploy:https://desafio-fullstack-api.onrender.com/api-documentation/</li>
 
 <ul>
-
-<h2>Link do deploy:https://desafio-fullstack-api.onrender.com/api-documentation/<h2>
