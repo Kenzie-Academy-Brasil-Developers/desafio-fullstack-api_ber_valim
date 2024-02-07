@@ -11,7 +11,7 @@ export type TcreateContactRequest = z.infer<typeof createContactRequestSchema>;
 export type TupdateContactRequest = Partial<
   Omit<TcreateContactRequest, "email" | "phone">
 > & {
-  fullName: string | undefined;
+  fullName: string | null;
   email: string[];
   phone: string[];
 };

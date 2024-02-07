@@ -166,6 +166,22 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "bodyValidationError": {
+                    "value": {
+                      "message": {
+                        "fullName": ["Required"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
 
@@ -497,6 +513,22 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "bodyValidationError": {
+                    "value": {
+                      "message": {
+                        "email": ["Required"]
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [{}]
@@ -632,6 +664,23 @@
                   "missingTokenError": {
                     "value": {
                       "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "bodyValidationError": {
+                    "value": {
+                      "message": {
+                        "fullName": ["Required"],
+                        "phone": ["Invalid input"]
+                      }
                     }
                   }
                 }
