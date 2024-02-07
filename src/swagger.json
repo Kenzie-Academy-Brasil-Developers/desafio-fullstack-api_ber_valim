@@ -76,6 +76,34 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -373,6 +401,48 @@
         "responses": {
           "204": {
             "description": "No Body content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NotFoundError": {
+                    "value": {
+                      "message": "Client not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "security": [
@@ -577,9 +647,262 @@
       }
     },
     "/contacts/:id": {
-      "get": {},
-      "patch": {},
-      "delete": {}
+      "get": {
+        "description": "Rota responsável por buscar o contato informado",
+        "tags": ["Rotas com parâmetros"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Id do usuário que deseja buscar",
+            "name": "id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "response": {
+                    "value": {
+                      "id": "2d8c9413-e961-44df-ad9c-446448fbaafc",
+                      "fullName": "contato 3  do yyy",
+                      "email": ["email1doyl@email.com", "email4doy@email.com"],
+                      "phone": ["41984454567"],
+                      "createdAt": "2024-02-05T18:30:54.989Z",
+                      "client_id": "ac0d7199-ee97-4f7e-a03a-540f87e0b670",
+                      "client": {
+                        "fullName": "yatualizadosdcx",
+                        "email": "yatualizado@email.com",
+                        "admin": false,
+                        "phone": "345657666744",
+                        "createdAt": "2024-01-30T20:59:08.813Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NotFoundError": {
+                    "value": {
+                      "message": "Client not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": ["read:contacts", "admin"]
+          }
+        ]
+      },
+      "patch": {
+        "description": "Rota responsável por atualizar os dados do contato informado",
+        "tags": ["Rotas com parâmetros"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Id do cliente que deseja buscar",
+            "name": "id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateOneContact"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/updateContactResponse"
+                },
+                "examples": {
+                  "contact": {
+                    "value": {
+                      "id": "a163d2ac-fb5d-4a56-8aa4-5164dfd750b7",
+                      "fullName": "contato 2 atualizadoss do yyy",
+                      "email": [
+                        "emamailatualizadoyyy@email.com",
+                        "email5yyyy@email.com"
+                      ],
+                      "phone": ["345364598697"],
+                      "createdAt": "2024-02-05T18:07:09.305Z",
+                      "client_id": "22826d08-10d6-4191-93d4-747c5d824a5a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NotFoundError": {
+                    "value": {
+                      "message": "Client not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": ["update:contacts", "admin"]
+          }
+        ]
+      },
+      "delete": {
+        "description": "Rota responsável por deletar o contato de um cliente",
+        "tags": ["Rotas com parâmetros"],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "description": "Id do client que deseja buscar",
+            "name": "id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Body content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "missingTokenError": {
+                    "value": {
+                      "message": "Missing Bearer Token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "permissionError": {
+                    "value": {
+                      "message": "Insufficient Permissions"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "NotFoundError": {
+                    "value": {
+                      "message": "Client not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JWT": ["delete:contacts", "admin"]
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1117,6 +1440,60 @@
                 }
               }
             ]
+          }
+        }
+      },
+      "updateContactResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "email": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "email",
+                "minLength": 3,
+                "maxLength": 45
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "email",
+                  "minLength": 3,
+                  "maxLength": 45
+                }
+              }
+            ]
+          },
+          "phone": {
+            "oneOf": [
+              {
+                "type": "string",
+                "maxLength": 18
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 18
+                }
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "client_id": {
+            "type": "string"
           }
         }
       }
