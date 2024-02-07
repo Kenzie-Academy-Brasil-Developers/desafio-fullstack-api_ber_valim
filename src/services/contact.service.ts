@@ -81,22 +81,38 @@ export const updateOneContactByIdService = async (
   contact: Contact,
   data: TupdateContactRequest
 ): Promise<TcontactResponse> => {
-  const emailArray = Array.isArray(data.email) ? data.email : [data.email];
-  const phoneArray = Array.isArray(data.phone) ? data.phone : [data.phone];
+  const emailArray = data.email
+    ? Array.isArray(data.email)
+      ? data.email
+      : [data.email]
+    : undefined;
+
+  const phoneArray = data.phone
+    ? Array.isArray(data.phone)
+      ? data.phone
+      : [data.phone]
+    : undefined;
+
+  const updateData: any = {
+    fullName: data.fullName,
+  };
+  if (emailArray !== undefined) {
+    updateData.email = {
+      set: emailArray,
+    };
+  }
+  if (phoneArray !== undefined) {
+    updateData.phone = {
+      set: phoneArray,
+    };
+  }
 
   const updatedContact: Contact | null = await prisma.contact.update({
     where: {
       id: contact.id,
     },
-    data: {
-      fullName: data.fullName,
-      email: {
-        set: emailArray,
-      },
-      phone: {
-        set: phoneArray,
-      },
-    },
+    data: updateData,
   });
+
   return contactResponseSchema.parse(updatedContact);
 };
