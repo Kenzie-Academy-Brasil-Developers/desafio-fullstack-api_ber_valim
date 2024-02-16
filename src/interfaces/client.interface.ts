@@ -5,6 +5,7 @@ import {
   clientResponseWithoutPasswordSchema,
   clientsListResponseSchema,
   clientLoginRequestSchema,
+  clientLoginResponseSchema,
 } from "../schemas/client.schema";
 
 export type TcreateClientRequest = z.infer<typeof createClientRequestSchema>;
@@ -15,4 +16,4 @@ export type TclientResponseWithoutPassword = z.infer<
 >;
 export type TreadClientsList = z.infer<typeof clientsListResponseSchema>;
 export type TclientLoginRequest = z.infer<typeof clientLoginRequestSchema>;
-export type TclientLoginResponse = { token: string };
+export type TclientLoginResponse = z.infer<typeof clientLoginResponseSchema>;
