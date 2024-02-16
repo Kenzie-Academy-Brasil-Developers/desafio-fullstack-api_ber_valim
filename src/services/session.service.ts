@@ -32,5 +32,14 @@ export const clientLoginService = async (
     { subject: client.id, expiresIn: process.env.EXPIRES_IN }
   );
 
-  return { token };
+  const clientLoginResponse: TclientLoginResponse = {
+    token: token,
+    client: {
+      fullName: client.fullName,
+      email: client.email,
+      phone: client.phone,
+    },
+  };
+
+  return clientLoginResponse;
 };
