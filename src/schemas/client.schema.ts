@@ -61,6 +61,7 @@ export const clientLoginRequestSchema = clientResponseSchema.pick({
 export const clientLoginResponseSchema = z.object({
   token: z.string(),
   client: z.object({
+    id: z.string(),
     fullName: z.string().min(3).max(80),
     email: z.string().email().min(3).max(45),
     phone: z.string().max(18),

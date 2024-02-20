@@ -35,6 +35,7 @@ export const clientLoginService = async (
   const clientLoginResponse: TclientLoginResponse = {
     token: token,
     client: {
+      id: client.id,
       fullName: client.fullName,
       email: client.email,
       phone: client.phone,
