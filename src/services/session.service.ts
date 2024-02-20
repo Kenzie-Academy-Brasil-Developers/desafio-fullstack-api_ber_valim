@@ -38,7 +38,6 @@ export const clientLoginService = async (
       id: client.id,
       fullName: client.fullName,
       email: client.email,
-      phone: client.phone,
     },
   };
 
