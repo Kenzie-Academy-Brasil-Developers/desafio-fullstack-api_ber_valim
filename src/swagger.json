@@ -493,7 +493,12 @@
                 "examples": {
                   "token": {
                     "value": {
-                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsTmFtZSI6ImFkbWluIiwiYWRtaW4iOnRydWUsImlhdCI6MTcwNzI0NjcyNSwiZXhwIjoxNzA3MzE4NzI1LCJzdWIiOiI1NzNjYzMzNC1kOWE1LTRmMTMtYjM0Zi00YTM3MzgwNmYwM2QifQ.PJ6Ye3Jm_9HZpxZWBzVkrnG8G1fMIrsRWwHjPww6Qyg"
+                      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsTmFtZSI6ImFkbWluIiwiYWRtaW4iOnRydWUsImlhdCI6MTcwNzI0NjcyNSwiZXhwIjoxNzA3MzE4NzI1LCJzdWIiOiI1NzNjYzMzNC1kOWE1LTRmMTMtYjM0Zi00YTM3MzgwNmYwM2QifQ.PJ6Ye3Jm_9HZpxZWBzVkrnG8G1fMIrsRWwHjPww6Qyg",
+                      "client": {
+                        "id": "9e3fa7d9-1b41-477b-9158-1572010b2549",
+                        "fullName": "Admin",
+                        "email": "admin@gmail.com"
+                      }
                     }
                   }
                 }
