@@ -710,7 +710,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Id do usuário que deseja buscar",
+            "description": "Id do contato  que se deseja buscar",
             "name": "id"
           }
         ],
@@ -802,7 +802,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Id do cliente que deseja buscar",
+            "description": "Id do contato  que se deseja buscar",
             "name": "id"
           }
         ],
@@ -900,7 +900,7 @@
               "type": "string"
             },
             "in": "query",
-            "description": "Id do client que deseja buscar",
+            "description": "Id do contato  que se deseja buscar",
             "name": "id"
           }
         ],
