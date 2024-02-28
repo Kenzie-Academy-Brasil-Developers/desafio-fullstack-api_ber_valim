@@ -23,6 +23,15 @@
 | DELETE | /contact /{id} | Deletar o contato que pertence a u cliente    | Admin e cliente dono da conta            |
 | PATCH  | /contact /{id} | Atualizar o contato que pertence a um cliente | Admin e cliente dono da conta            |
 
+## Diagrama de Entidades e Relacionamentos:
+
+![DER](./DER.png)
+
+<h2>Algumas regras de negócio:</h2>
+<li>Clientes não podem ser cadastrados com o mesmo e-mail</li>
+<li>Clientes não podem ser cadastrados com o mesmo telefone</li>
+<li></li>
+
 <h2>Passos para a API rodar:</h2>
 
 <ul>
