@@ -30,7 +30,6 @@
 <h2>Algumas regras de negócio:</h2>
 <li>Clientes não podem ser cadastrados com o mesmo e-mail</li>
 <li>Clientes não podem ser cadastrados com o mesmo telefone</li>
-<li></li>
 
 <h2>Passos para a API rodar:</h2>
 
