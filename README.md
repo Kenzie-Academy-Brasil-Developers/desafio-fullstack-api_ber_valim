@@ -28,24 +28,25 @@
 ![DER](./DER.png)
 
 <h2>Algumas regras de negócio:</h2>
+<ul>
 <li>Clientes não podem ser cadastrados com o mesmo e-mail</li>
 <li>Clientes não podem ser cadastrados com o mesmo telefone</li>
+</ul>
 
 <h2>Passos para a API rodar:</h2>
 
 <ul>
-
-<li>
-Clone o reposítório de forma local
-</li>
+<li>Clone o repositório de forma local</li>
 <li>Utilize o comando npm install para instalar todas as dependências</li>
 <li>Utilize o comando npx prisma migrate dev--nome migration para rodar as migrações </li>
 <li>Para rodar o servidor, utilize o npm run dev</li>
 <li>Para um melhor entendimento a respeito da API e de cada rota, acesse a documentação em "http://localhost:3333/api-documentation/".Para ter acesso a esta rota, é necessário rodar o servidor</li>
-<li>Link do deploy:https://desafio-fullstack-api.onrender.com/api-documentation/</li>
-
-<ul> 
+<li>Link do deploy: https://desafio-fullstack-api.onrender.com/api-documentation/</li>
+</ul>
 
 ## Contato
-<p>Alguma dúvida sobre o projeto ou deseja contribuir de algumas forma?</p>
--bernardogvalim@gmail.com -https://www.linkedin.com/in/bernardo-valim/
+
+<p>Alguma dúvida sobre o projeto ou deseja contribuir de alguma forma?</p>
+- bernardogvalim@gmail.com
+- https://www.linkedin.com/in/bernardo-valim/
+</html>
