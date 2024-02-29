@@ -44,4 +44,8 @@ Clone o reposítório de forma local
 <li>Para um melhor entendimento a respeito da API e de cada rota, acesse a documentação em "http://localhost:3333/api-documentation/".Para ter acesso a esta rota, é necessário rodar o servidor</li>
 <li>Link do deploy:https://desafio-fullstack-api.onrender.com/api-documentation/</li>
 
-<ul>
+<ul> 
+
+## Contato
+<p>Alguma dúvida sobre o projeto ou deseja contribuir de algumas forma?</p>
+-bernardogvalim@gmail.com -https://www.linkedin.com/in/bernardo-valim/
